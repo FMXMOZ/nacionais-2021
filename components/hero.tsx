@@ -33,8 +33,8 @@ export default function Hero() {
         {SITE_DESCRIPTION}
       </h2>
       <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
-        The first {BRAND_NAME}
-        <br className={styleUtils['show-on-desktop']} /> global user conference
+         Campeonato Nacional de Xadrez 2021
+        
       </h1>
       <h2
         className={cn(
@@ -44,13 +44,13 @@ export default function Hero() {
           styles.description
         )}
       >
-        {SITE_DESCRIPTION}
+       
       </h2>
       <div className={cn(styleUtils.appear, styleUtils['appear-fourth'], styles.info)}>
-        <p>{DATE}</p>
+        <p>14 à 19 de Dezembro </p>
         <div className={styles['description-separator']} />
         <p>
-          <strong>Online</strong>
+          <strong>Salão Nobre Do Municipio Da Matola</strong>
         </p>
       </div>
     </div>

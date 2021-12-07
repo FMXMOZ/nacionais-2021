@@ -37,31 +37,35 @@ export const COPYRIGHT_HOLDER = process.env.NEXT_PUBLIC_COPYRIGHT_HOLDER;
 
 export const CODE_OF_CONDUCT =
   'https://www.notion.so/vercel/Code-of-Conduct-Example-7ddd8d0e9c354bb597a0faed87310a78';
-export const REPO = 'https://github.com/vercel/virtual-event-starter-kit';
+export const REPO = 'https://github.com/FMXMOZ/nacionais-2021';
 export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [
   {
-    name: 'Stage A',
+    name: 'Dia 1',
     route: '/stage/a'
   },
   {
-    name: 'Stage C',
+    name: 'Dia 2',
     route: '/stage/c'
   },
   {
-    name: 'Stage M',
+    name: 'Dia 3',
     route: '/stage/m'
   },
   {
-    name: 'Stage E',
+    name: 'Dia 4',
     route: '/stage/e'
   },
   {
-    name: 'Schedule',
+    name: 'Dia 5',
+    route: '/stage/e'
+  },
+  {
+    name: 'Calendário',
     route: '/schedule'
   },
   {
-    name: 'Speakers',
+    name: 'Participantes',
     route: '/speakers'
   },
   {
@@ -69,7 +73,7 @@ export const NAVIGATION = [
     route: '/expo'
   },
   {
-    name: 'Jobs',
+    name: 'Equipa',
     route: '/jobs'
   }
 ];
