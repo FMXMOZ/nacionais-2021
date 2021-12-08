@@ -21,7 +21,7 @@ export const BRAND_NAME = 'ACME';
 export const SITE_NAME_MULTILINE = ['ACME', 'Conf'];
 export const SITE_NAME = 'ACME Conf';
 export const META_DESCRIPTION =
-  'Lista de Jogadores Apurados ao Nacional 2021.';
+  'Agendamento de transmições/resumos do campeonato nacional.';
 export const SITE_DESCRIPTION =
   'An interactive online experience by the community, free for everyone.';
 export const DATE = 'October 27, 2020';
