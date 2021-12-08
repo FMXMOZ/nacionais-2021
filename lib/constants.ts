@@ -21,7 +21,7 @@ export const BRAND_NAME = 'ACME';
 export const SITE_NAME_MULTILINE = ['ACME', 'Conf'];
 export const SITE_NAME = 'ACME Conf';
 export const META_DESCRIPTION =
-  'This is an open source demo that Next.js developers can clone, deploy, and fully customize for events. Created through collaboration of marketers, designers, and developers at Vercel.';
+  'Lista de Jogadores Apurados ao Nacional 2021.';
 export const SITE_DESCRIPTION =
   'An interactive online experience by the community, free for everyone.';
 export const DATE = 'October 27, 2020';
@@ -42,23 +42,23 @@ export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [
   {
     name: 'Dia 1',
-    route: '/stage/a'
+    route: '/stage/dia-1'
   },
   {
     name: 'Dia 2',
-    route: '/stage/c'
+    route: '/stage/dia-2'
   },
   {
     name: 'Dia 3',
-    route: '/stage/m'
+    route: '/stage/dia-3'
   },
   {
     name: 'Dia 4',
-    route: '/stage/e'
+    route: '/stage/dia-4'
   },
   {
     name: 'Dia 5',
-    route: '/stage/e'
+    route: '/stage/dia-5'
   },
   {
     name: 'Calendário',
