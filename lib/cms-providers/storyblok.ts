@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker,Players } from '@lib/types';
+import { Job, Sponsor, Stage, Speaker,Players, Players } from '@lib/types';
 
 const API_URL = 'https://gapi.storyblok.com/v1/api';
 const API_TOKEN = process.env.STORYBLOK_PREVIEW_TOKEN;
@@ -114,7 +114,7 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   return transformedData;
 }
 
-export async function getAllPlayers(): Promise<Speaker[]> {
+export async function getAllPlayers(): Promise<Players[]> {
   const data = await fetchCmsAPI(`
   {
     PlayersItems(per_page: 100) {
