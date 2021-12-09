@@ -31,7 +31,7 @@ type Props = {
 
 export default function PlayersL({ players }: Props) {
   const meta = {
-    title: 'Speakers - Virtual Event Starter Kit',
+    title: 'Players List',
     description: META_DESCRIPTION
   };
   return (

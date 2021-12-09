@@ -47,8 +47,8 @@ export default function SpeakersGrid({ players }: Props) {
               <div>
                 <h2 className={styles.name}>{player.name}</h2>
                 <p className={styles.title}>
-                  {`${player.title} @ `}
-                  <span className={styles.province}>{player.province}</span>
+                  {`${player.title} @ ${player.province}`}
+                  <span className={styles.province}></span>
                 </p>
               </div>
             </div>
