@@ -32,6 +32,20 @@ export type Speaker = {
   imageSquare: Image;
 };
 
+export type Players = {
+  name: string;
+  bio: string;
+  title: string;
+  slug: string;
+  fideId: string;
+  instagram: string;
+  province: string;
+  talk: Talk;
+  image: Image;
+  imageSquare: Image;
+  cellphone:string;
+};
+
 export type Stage = {
   name: string;
   slug: string;

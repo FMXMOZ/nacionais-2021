@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Sponsor, Stage, Speaker,Players } from '@lib/types';
 
 const API_URL = `${process.env.STRAPI_API_URL}/graphql`;
 const IMAGE_API_URL = process.env.STRAPI_API_URL;
@@ -77,6 +77,20 @@ function serializeSpeaker(speaker: Speaker) {
   };
 }
 
+/**
+ * @param player
+ * @returns speaker object with serialized image
+ */
+ function serializePlayer(player: Players) {
+  return {
+    ...player,
+    image: {
+      ...player.image,
+      ...serializeImage(player.image)
+    }
+  };
+}
+
 export async function getAllSpeakers(): Promise<Speaker[]> {
   const data = await fetchCmsAPI(`
   {
@@ -109,6 +123,39 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   `);
 
   return data.speakers.map(serializeSpeaker);
+}
+
+export async function getAllPlayers(): Promise<Players[]> {
+  const data = await fetchCmsAPI(`
+  {
+    player{
+      title
+      cellphone
+      bio
+      slug
+      name
+      image {
+        alternativeText
+        width
+        height
+        url
+        size
+        formats
+      }
+      fideId
+      instagram
+      talk {
+        id
+        title
+        start
+        end
+        description
+      }   
+    }
+  }  
+  `);
+
+  return data.players.map(serializePlayer);
 }
 
 export async function getAllStages(): Promise<Stage[]> {

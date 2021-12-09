@@ -47,7 +47,7 @@ export default function Hero() {
        
       </h2>
       <div className={cn(styleUtils.appear, styleUtils['appear-fourth'], styles.info)}>
-        <p>14 à 19 de Dezembro </p>
+        <p>14 à 18 de Dezembro </p>
         <div className={styles['description-separator']} />
         <p>
           <strong>Salão Nobre Do Municipio Da Matola</strong>

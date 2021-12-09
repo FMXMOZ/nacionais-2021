@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Sponsor, Stage, Speaker, Players } from '@lib/types';
 
 const API_URL = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
 const API_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
@@ -70,6 +70,38 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   `);
 
   return data.speakerCollection.items.map((speaker: any) => speaker);
+}
+
+export async function getAllPlayers(): Promise<Players[]> {
+  const data = await fetchCmsAPI(`
+    {
+      playersCollection {
+        items {
+          name
+          bio
+          title
+          slug
+          twitter
+          github
+          company
+          talk {
+            ... on Talk {
+              title
+              description
+            }
+          }
+          image {
+            url
+          }
+          imageSquare: image {
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  return data.playersCollection.items.map((player: any) => player);
 }
 
 export async function getAllStages(): Promise<Stage[]> {

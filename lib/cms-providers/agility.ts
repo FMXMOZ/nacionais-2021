@@ -20,7 +20,7 @@
 const agilityContentSync = require('@agility/content-sync');
 const agilityFileSystem = require('@agility/content-sync/src/store-interface-filesystem');
 
-import { Job, Speaker, Sponsor, Stage } from '../types';
+import { Job, Speaker, Sponsor, Stage, Players } from '../types';
 
 const agilityConfig = {
   guid: process.env.AGILITY_GUID,
@@ -74,6 +74,58 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
       },
       imageSquare: {
         url: `${speaker.fields.image.url}?w=192&h=192&c=1`
+      },
+      talk
+    });
+  });
+
+  return lst.sort((a, b) => (a.name > b.name ? 1 : -1));
+}
+
+export async function getAllPlayers(): Promise<Players[]> {
+  const agility = await syncContentAndGetClient(null);
+  const speakers = await agility.getContentList({
+    referenceName: 'players',
+    languageCode: agilityConfig.languageCode
+  });
+  const schedule = await agility.getContentList({
+    referenceName: 'schedule',
+    languageCode: agilityConfig.languageCode
+  });
+  const languageCode = agilityConfig.languageCode;
+
+  const lst: Players[] = [];
+
+  await asyncForEach(speakers, async (player: any) => {
+    player = await expandContentItem({ agility, contentItem: player, languageCode, depth: 1 });
+
+    const talks = schedule
+      .filter((t: any) => {
+        return `,${t.fields.speakerIDs},`.indexOf(`,${player.contentID},`) !== -1;
+      })
+      .map((t: any) => {
+        return {
+          title: t.fields.name,
+          description: t.fields.description
+        };
+      });
+
+    const talk = (talks || []).length > 0 ? talks[0] : null;
+
+    lst.push({
+      name: player.fields.name,
+      title: player.fields.title,
+      bio: player.fields.bio,
+      slug: player.fields.slug,
+      fideId: player.fields.fideId,
+      instagram: player.fields.github,
+      province: player.fields.province,
+      cellphone: player.fields.cellphone,
+      image: {
+        url: `${player.fields.image.url}?w=300&h=400&c=1`
+      },
+      imageSquare: {
+        url: `${player.fields.image.url}?w=192&h=192&c=1`
       },
       talk
     });

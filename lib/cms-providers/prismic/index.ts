@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Job, Sponsor, Stage, Speaker } from '@lib/types';
+import { Job, Sponsor, Stage, Speaker ,Players} from '@lib/types';
 import { richTextAsText, getLinkUrl } from './utils';
 
 const API_REF_URL = `https://${process.env.PRISMIC_REPO_ID}.prismic.io/api/v2`;
@@ -103,7 +103,68 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
       title: richTextAsText(edge.node.title),
       twitter: getLinkUrl(edge.node.twitter),
       github: getLinkUrl(edge.node.github),
+      province: richTextAsText(edge.node.province),
+      image: {
+        url:
+          edge.node.image?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
+      },
+      talk: {
+        title: edge.node.talk?.title ? richTextAsText(edge.node.talk.title) : '',
+        description: edge.node.talk?.description ? richTextAsText(edge.node.talk.description) : ''
+      }
+    };
+  });
+
+  return reformatedData;
+}
+
+export async function getAllPlayers(): Promise<Players[]> {
+  const data = await fetchCmsAPI(`
+  {
+    allPlayers(first: 100) {
+      edges {
+        node {
+          name
+          bio
+          title
+          province
+          cellphone
+          instagram {
+            _linkType
+            ... on _ExternalLink {
+              url
+            }
+          }
+          image
+          talk {
+            _linkType
+            ... on Talk {
+              title
+              description
+            }
+          }
+          
+          _meta {
+            uid
+          }
+        }
+      }
+    }
+  }
+  
+  
+  `);
+  //fide
+  const reformatedData = data.allPlayers.edges.map((edge: any) => {
+    return {
+      name: richTextAsText(edge.node.name),
+      bio: richTextAsText(edge.node.bio),
+      slug: edge.node._meta.uid,
+      title: richTextAsText(edge.node.title),
+      twitter: getLinkUrl(edge.node.twitter),
+      github: getLinkUrl(edge.node.github),
       company: richTextAsText(edge.node.company),
+      province: richTextAsText(edge.node.province),
       image: {
         url:
           edge.node.image?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
